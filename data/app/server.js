@@ -1,20 +1,24 @@
 // const http = require("http");
 const express = require("express");
 const app = express();
+app.set("view engine", "ejs");
 // const fs = require("fs");
 const port = 8000;
 const hostname = "localhost";
 
 app.get("/", (req, res) => {
-  res.sendFile(`./views/index.html`, { root: __dirname });
+  //   res.sendFile(`./views/index.ejs`, { root: __dirname });
+  res.render("index");
 });
 
 app.get("/contact", (req, res) => {
-  res.sendFile(`./views/contact.html`, { root: __dirname });
+  //   res.sendFile(`./views/contact.ejs`, { root: __dirname });
+  res.render("contact");
 });
 
 app.use((req, res) => {
-  res.sendFile(`./views/404.html`, { root: __dirname });
+  //   res.sendFile(`./views/404.ejs`, { root: __dirname });
+  res.render("404");
 });
 app.listen(port, hostname, () => {
   console.log(`your server is listing http://localhost:${port}`);
