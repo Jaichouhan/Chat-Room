@@ -10,10 +10,19 @@
         <% if (items.length > 0) { %> <% items.forEach((data) => { %>
         <li class="collection-item">
           <div>
-            <%= data.name %> <%=data.price %>
+            <a href="/items/<%= data._id %>">
+              <%= data.name %> <%=data.price %></a
+            >
             <a href="#!" class="secondary-content">
-              <i class="material-icons">edit</i>
-              <i class="material-icons">delete</i>
+              <i class="material-icons modal-trigger" href="#edit-item-module"
+                >edit</i
+              >
+              <i
+                class="material-icons"
+                data-id="<%=data._id %>"
+                id="itemContainer"
+                >delete</i
+              >
             </a>
           </div>
         </li>
@@ -22,6 +31,45 @@
         <li>There no items</li>
         <% }%>
       </ul>
+      <div id="edit-item-module" class="modal">
+        <div class="modal-content">
+          <h4>Edit Form</h4>
+          <form action="" id="edit_form">
+            <input type="text" name="name" placeholder="item name" />
+            <input type="number" name="price" placeholder="item price" />
+            <button class="btn" id="itemContainer">update</button>
+          </form>
+        </div>
+      </div>
     </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var elems = document.querySelectorAll(".modal");
+        var instances = M.Modal.init(elems);
+      });
+      itemContainer.onclick = function (e) {
+        console.log("first", e.target.textContent);
+        if (e.target.textContent === "edit") {
+          updateId = e.target.getAttribute("data-id");
+          console.log(updateId);
+        }
+        if (e.target.textContent === "delete") {
+          const id = e.target.getAttribute("data-id");
+          console.log(id);
+          const endpoint = `/items/${id}`;
+          fetch(endpoint, {
+            method: "DELETE",
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              console.log(data, "data");
+            })
+            .catch((err) => console.log(err));
+        }
+      };
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   </body>
 </html>
