@@ -2,8 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
 app.set("view engine", "ejs");
-const mongodb =
-  "mongodb+srv://jaichouhan:1ap7R5L3xiPz4Pa5@cluster0.7wnnt.mongodb.net/?retryWrites=true&w=majority";
+const mongodb = "mongodb://localhost:27017";
 // const fs = require("fs");
 const port = 8000;
 const hostname = "localhost";
