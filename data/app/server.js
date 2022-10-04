@@ -26,16 +26,16 @@ app.get("/", (req, res) => {
   res.redirect("/get-items");
 });
 
-app.get("/create-item", (req, res) => {
-  const item = new data({
-    name: "computer",
-    price: 10000,
-  });
-  item
-    .save()
-    .then((res) => console.log(res))
-    .catch((err) => console.log(err));
-});
+// app.get("/create-item", (req, res) => {
+//   const item = new data({
+//     name: "computer",
+//     price: 10000,
+//   });
+//   item
+//     .save()
+//     .then((res) => console.log(res))
+//     .catch((err) => console.log(err));
+// });
 app.get("/get-items", (req, res) => {
   data
     .find()
